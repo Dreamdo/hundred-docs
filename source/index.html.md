@@ -95,16 +95,20 @@ curl "https://hundred.org/api/innovations"
 
 This endpoint retrieves all innovations.
 
+The request is paginated. next page you can get by passing <code>page</code> parameter.
+
 ### HTTP Request
 
 `GET https://hundred.org/api/innovations`
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-order | id | If set it returns ordered result other than by latest 
-filter | empty | If set it returns filtered innovations list
+Parameter | Default | Description | Options
+--------- | ------- | ----------- | -----
+order | featured | If set it returns ordered result ordered by any of options | latest, name, views
+search | empty | If set it returns found innovations list
+page | 1 | Page of the response
+limit | 20 | If set it returns exact amount of innovations up to 20
 
 <aside class="success">
 Remember — Put "Authorization: Bearer JWT_TOKEN" in header!
@@ -132,8 +136,6 @@ curl "GET https://hundred.org/api/innovations/15"
 ```
 
 This endpoint retrieves a specific innovation.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
 
 ### HTTP Request
 
