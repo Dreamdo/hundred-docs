@@ -20,132 +20,127 @@ Welcome to the HundrED API!
 
 # Authentication
 
-> To authorize, use this code:
+Server expects for the JWT_TOKEN to be included in all API requests to the server in a header.
+
+The header AUTHORIZATION should look like following:
+
+`Authorization: Bearer JWT_TOKEN`
+
+Payload should look like following: 
+
+<code>
+{
+  "app_id": "APP_ID"
+}
+</code>
+
+
+```json
+{
+  "app_id": "APP_ID"
+}
+```
+> The above JSON object is should be included in JWT payload.
+
 
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+ curl -i -H "AUTHORIZATION: Bearer JWT_TOKEN" https://hundred.org/api/innovations/15
 ```
+> The above command returns JSON structured like this:
 
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+```json
+{  
+   "innovation":{  
+      "id":15,
+      "title":"Third innovation",
+      "cover_image_url":"fallback/collection/default5.png",
+      "date":"20.6.2019",
+      "body":"<p><b>What we do?</b></p> <p></p> <p><b>Why we do it?</b></p> <p></p>"
+   }
+}
+```
+<aside class="success">
+You must replace <code>JWT_TOKEN</code> with generated JWT token signed with APP_SECRET and payload.
 </aside>
 
-# Kittens
+# Innovations
 
-## Get All Kittens
+## Get All Innovations
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+curl "https://hundred.org/api/innovations"
+  -H "Authorization: Bearer JWT_TOKEN"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+{  
+   "innovations":[  
+      {  
+         "id":10,
+         "title":"Second innovation",
+         "cover_image_url":"fallback/collection/default0.png",
+         "date":"22.5.2018"
+      },
+      {  
+         "id":5,
+         "title":"First innovation",
+         "cover_image_url": URL_TO_IMAGE,
+         "date":"7.3.2018"
+      }
+   ]
+}
 ```
 
-This endpoint retrieves all kittens.
+This endpoint retrieves all innovations.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`GET https://hundred.org/api/innovations`
 
 ### Query Parameters
 
 Parameter | Default | Description
 --------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+order | id | If set it returns ordered result other than by latest 
+filter | empty | If set it returns filtered innovations list
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+Remember — Put "Authorization: Bearer JWT_TOKEN" in header!
 </aside>
 
-## Get a Specific Kitten
+## Get a Specific innovation
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
+curl "GET https://hundred.org/api/innovations/15"
+  -H "Authorization: Bearer JWT_TOKEN"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+{  
+   "innovation":{  
+      "id":15,
+      "title":"Third innovation",
+      "cover_image_url":"fallback/collection/default5.png",
+      "date":"20.6.2019",
+      "body":"<p><b>What we do?</b></p> <p></p> <p><b>Why we do it?</b></p> <p></p>"
+   }
 }
 ```
 
-This endpoint retrieves a specific kitten.
+This endpoint retrieves a specific innovation.
 
 <aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET https://hundred.org/api/innovations/<ID>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
-
+ID | The ID of the innovation to retrieve
