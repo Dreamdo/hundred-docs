@@ -65,7 +65,7 @@ You must replace <code>JWT_TOKEN</code> with generated JWT token signed with APP
 
 # Innovations
 
-## Get All Innovations
+## Get all innovations
 
 ```shell
 curl "https://hundred.org/api/innovations"
@@ -105,16 +105,16 @@ The request is paginated. next page you can get by passing <code>page</code> par
 
 Parameter | Default | Description | Options
 --------- | ------- | ----------- | -----
-order | featured | If set it returns ordered result ordered by any of options | latest, name, views
-search | empty | If set it returns found innovations list
+order | featured | returns result ordered by any of the options | latest, name, views
+search | empty | returns found innovations list
 page | 1 | Page of the response
-limit | 20 | If set it returns exact amount of innovations up to 20
+limit | 20 | returns exact amount of innovations up to 20
 
 <aside class="success">
 Remember — Put "Authorization: Bearer JWT_TOKEN" in header!
 </aside>
 
-## Get a Specific innovation
+## Get a specific innovation
 
 ```shell
 curl "GET https://hundred.org/api/innovations/15"

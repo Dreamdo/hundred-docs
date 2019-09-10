@@ -13,7 +13,7 @@ Error Code | Meaning
 401 | Unauthorized -- Your API key is wrong.
 403 | Forbidden -- The innovation requested is hidden for administrators only.
 404 | Not Found -- The specified innovation could not be found.
-405 | Method Not Allowed -- You tried to access a innovation with an invalid method.
+405 | Method Not Allowed -- You tried to access an innovation with an invalid method.
 406 | Not Acceptable -- You requested a format that isn't json.
 410 | Gone -- The innovation requested has been removed from our servers.
 418 | I'm a teapot.
